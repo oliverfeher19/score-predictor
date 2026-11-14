@@ -1,0 +1,56 @@
+premier-league-predictor/
+│
+├── data/
+│   ├── raw/                 # Immutable CSVs downloaded from Football-Data.co.uk
+│   └── processed/           # Cleaned feature-engineered datasets ready for modeling
+│
+├── notebooks/
+│   ├── 01_eda.ipynb         # Exploratory data analysis & data visualization
+│   └── 02_model_prototypes.ipynb # Scratchpad for testing scikit-learn models
+│
+├── src/                     # Core application source code
+│   ├── __init__.py
+│   ├── config.py            # Global paths, database connection strings, constants
+│   ├── ingest/
+│   │   ├── __init__.py
+│   │   ├── downloader.py    # Scripts to fetch or update raw CSVs
+│   │   └── database.py      # Database connection and table creation logic
+│   ├── features/
+│   │   ├── __init__.py
+│   │   ├── rolling.py       # Functions for rolling goals, shots, and form metrics
+│   │   ├── elo.py           # Dynamic Elo rating calculation logic
+│   │   └── pipeline.py      # Orchestrator that applies all feature engineering steps
+│   ├── models/
+│   │   ├── __init__.py
+│   │   ├── classify.py      # Training scripts for Win/Draw/Loss classification
+│   │   └── poisson.py       # Statistical goal-scoring and scoreline models
+│   └── evaluation/
+│       ├── __init__.py
+│       └── metrics.py       # Custom log loss, Brier score, and backtesting functions
+│
+├── tests/                   # Unit tests to verify feature calculations and data integrity
+│   └── test_features.py
+│
+├── .gitignore
+├── requirements.txt         # Python dependencies (pandas, scikit-learn, xgboost, etc.)
+└── README.md                # Project documentation, setup guide, and model performance
+
+Columns I will need:
+Identifiers and Core Results:
+    Date: when match was played
+    HomeTeam: name of home team
+    AwayTeam: name of away team
+    FTHG: Full Time Home Goals
+    FTAG: Full Time Away Goals 
+    FTR: Full Time Result (H for Home win, D for Draw, A for Away win (W/D/L))
+Core Match Statistics:
+    HS/AS: Home/Away Shots 
+    HST/AST: Home/Away Shots on Target 
+    HC/AC: Home/Away Corners
+    HxG/AxG: Home/Away Expected Goals 
+Disciplinary Context:
+    HR/AR: Home/Away Red 
+
+Virtual Environment:
+.\venv\Scripts\Activate.ps1
+deactivate
